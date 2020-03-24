@@ -3,22 +3,12 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) =>{
-    res.json({ "API": "ok" });
-})
+const ControllerUsers = require('./controllers/ControllerUsers');
 
-app.get('/usuario/:id', (req, res) => {
-    let id = req.params.id;
-    res.json({ "id": id });
-})
+//USUARIOS
+app.post('/usuario/insert', ControllerUsers.insert);
+app.put('/usuario/update/:id',  ControllerUsers.update);
 
-
-app.post('/cliente/:id', (req, res) => {
-    let id = req.params.id;
-    let nome = req.body.nome;
-    let email = req.body.email;
-    res.json(id);
-})
 
 
 
