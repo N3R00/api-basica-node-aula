@@ -30,5 +30,32 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
+    },
+    async findAll(req, res){
+        try {
+            let response = await db.query('SELECT * FROM usuarios');
+            res.json(response[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async findById(req, res){
+        let id = req.params.id;
+        try {
+            let response = await db.query(`SELECT * FROM usuarios WHERE id = ${id}`);
+            res.json(response[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async delete(req, res){
+        let id = req.params.id;
+
+        try {
+            let response = await db.query(`DELETE FROM usuarios WHERE id = ${id}`);
+            res.json(response);
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
